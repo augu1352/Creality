@@ -3,5 +3,5 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return render(request, 'crealityAPP/index.html')
+    return render(request, 'index.html')
     # return HttpResponse("HELLO WORLD")
