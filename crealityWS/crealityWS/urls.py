@@ -24,7 +24,7 @@ urlpatterns = [
 #Intro URL
 from django.conf.urls import url, include
 from rest_framework import routers
-from crealityWS.intro import views
+from intro import views
 
 
 router = routers.DefaultRouter()
