@@ -15,6 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+from rest_framework import routers
+from intro import views
+
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'users', views.GroupViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,14 +32,10 @@ urlpatterns = [
 
 
 #Intro URL
-from django.conf.urls import url, include
-from rest_framework import routers
-from intro import views
 
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'users', views.GroupViewSet)
+
+
 
 
 # wire up our API using automatic URL routing.
