@@ -14,7 +14,7 @@ def index(request):
 
 def get_newUserInfo(request):
     if request.method == "POST":
-        global form = CreatUserForm(request.POST)
+        form = CreatUserForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
@@ -23,6 +23,6 @@ def get_newUserInfo(request):
             send_email("Created User", f"You created user: {username} with email: {email} and password: {password}", email, recipients)
             return HttpResponseRedirect("/thanks/")
     else:
-        global form = CreatUserForm()
+        form = CreatUserForm()
 
     return render(request, 'index.html', {'form': form})
