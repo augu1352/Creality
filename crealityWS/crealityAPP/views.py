@@ -25,4 +25,4 @@ def get_newUserInfo(request):
     else:
         form = CreatUserForm()
 
-    return render(request, "index.html", {'form': form})
+    return render(request, 'index.html', {'form': form})
