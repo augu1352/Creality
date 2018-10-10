@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>hello world!</h1>
+  <h1>Augusts seje hjemmeside</h1>
   <!-- <form action="/admin/" method="post">
     Username:<br>
     <input type="text" name="username" value="{{ current_username }}">
@@ -19,7 +20,7 @@
   </form> -->
   <form action="/admin/" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ formHere }}
     <input type="submit" value="Submit">
   </form>
 </body>
