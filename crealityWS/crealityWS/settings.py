@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_DIR = os.environ['crealityDB']
 
 
 # Quick-start development settings - unsuitable for production
@@ -82,7 +83,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ('crealityDB'),
+        'NAME': os.path.join(DB_DIR, 'crealityDB'),
         'user': 'augu1352',
         'PASSWORD': '120204Aj',
         'HOST': '',
