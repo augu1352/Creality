@@ -83,7 +83,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(DB_DIR, 'crealityDB'),
+        'NAME': os.path.join(DB_DIR),
         'user': 'augu1352',
         'PASSWORD': '120204Aj',
         'HOST': '',
