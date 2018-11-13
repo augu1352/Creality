@@ -6,8 +6,12 @@ from django.core.mail import send_mail
 # Create your views here.
 #index page
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
     # return HttpResponse("HELLO WORLD")
+
+
+def login(request):
+    return render(request, "login.html")
 
 
 #form username handler
