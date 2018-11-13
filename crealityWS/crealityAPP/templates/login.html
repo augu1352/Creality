@@ -7,7 +7,7 @@
   <title>Log In</title>
 </head>
 <body>
-  <form action="/admin/" method="post">
+  <form method="post">
     {% csrf_token %}
     Username:<br>
     <input type="text" name="username" value="{{ current_username }}"><br>
