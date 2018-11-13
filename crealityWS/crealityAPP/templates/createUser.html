@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <body>
   <form method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
     <input type="submit" value="Create User">
   </form>
   <!-- <form action="/userdb/" method="post">
