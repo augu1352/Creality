@@ -14,6 +14,9 @@ def login(request):
     return render(request, "login.html")
 
 
+def createUser(request):
+    return render(request, "createUser.html")
+
 #form username handler
 
 def get_newUserInfo(request):
