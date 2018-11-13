@@ -16,7 +16,7 @@ def login(request):
 
 
 def createUser(request):
-    form = createUserForm()
+    form = CreateUserForm()
     return render(request, "createUser.html", {"form", form})
 
 
