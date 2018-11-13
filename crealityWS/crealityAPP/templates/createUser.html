@@ -7,17 +7,18 @@
   <title>Create User</title>
 </head>
 <body>
-  <form method="post">
+  {{ form }}
+  <!-- <form action="/userdb/" method="post">
     {% csrf_token %}
     Username:<br>
-    <input type="text" name="username" value="{{ current_username }}"><br>
+    <input type="text" name="username" value="{{ current_username }}" placeholder="Desired Username"><br>
     Email Address:<br>
-    <input type="email" name="email"><br>
+    <input type="email" name="email" placeholder="Your Eamil Address"><br>
     Password:<br>
-    <input type="password" name="password"><br>
+    <input type="password" name="password" placeholder="Desired Password"><br>
     Retype Password:<br>
-    <input type="password" name="password"><br>
+    <input type="password" name="password" placeholder="Retype Password"><br>
     <input type="submit" value="Create User">
-  </form>
+  </form> -->
 </body>
 </html>

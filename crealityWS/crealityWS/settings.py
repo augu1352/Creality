@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_DIR = 'root/var/lib/postgresql/10/main'
+# DB_DIR = 'root/var/lib/postgresql/10/main'
 
 
 # Quick-start development settings - unsuitable for production

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
+from .forms import *
+import psycopg2
 
 # Create your views here.
 #index page
@@ -14,7 +16,20 @@ def login(request):
 
 
 def createUser(request):
-    return render(request, "createUser.html")
+    form = createUserForm()
+    return render(request, "createUser.html", {"form", form})
+
+
+# def userdb(request):
+#     username = request.POST("username")
+#     email = request.POST("email")
+#     password = request.POST("password")
+#
+#     conn = psycopg2.connect(host="localhost", database="crealityDB", user="postgres", password="postgres")
+#     cur = conn.cursor()
+#     cur.execute("INSERT INTO users VALUES (username, email, password)")
+
+
 
 #form username handler
 
