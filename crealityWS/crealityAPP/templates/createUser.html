@@ -7,7 +7,11 @@
   <title>Create User</title>
 </head>
 <body>
-  {{ form }}
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Create User">
+  </form>
   <!-- <form action="/userdb/" method="post">
     {% csrf_token %}
     Username:<br>

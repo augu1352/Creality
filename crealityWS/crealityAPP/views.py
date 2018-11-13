@@ -16,6 +16,16 @@ def login(request):
 
 
 def createUser(request):
+
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            email = form.cleaned_data["email"]
+
+            print(username, email)
+
+
     form = CreateUserForm()
     return render(request, "createUser.html", {"form": form})
 
