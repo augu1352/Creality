@@ -46,9 +46,13 @@ def loginUser(request):
             conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
             cur = conn.cursor()
 
-            cur.execute("SELECT user_password FROM users;")
+            cur.execute("SELECT user_username FROM users;")
             fetched = cur.fetchall()
-            print(fetched)
+            if username in fetched:
+                cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
+                fetchedpw = fetchone()
+                print(fetchedpw)
+            # print(fetched)
 
             # cur.execute("SELECT * FROM users;")
             # fetched = cur.fetchall()
