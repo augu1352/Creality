@@ -52,6 +52,7 @@ def loginUser(request):
                 cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
                 fetchedpw = fetchone()
                 print(fetchedpw)
+                print("debug")
             # print(fetched)
 
             # cur.execute("SELECT * FROM users;")
