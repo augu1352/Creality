@@ -48,7 +48,7 @@ def loginUser(request):
 
             cur.execute("SELECT * FROM users;")
             fetched = cur.fetchall()
-            print(fetched)
+            print(fetched["silas"])
 
             conn.commit()
             cur.close()
