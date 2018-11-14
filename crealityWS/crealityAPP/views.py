@@ -46,14 +46,18 @@ def loginUser(request):
             conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
             cur = conn.cursor()
 
-            cur.execute("SELECT * FROM users;")
+            cur.execute("SELECT user_password FROM users;")
             fetched = cur.fetchall()
-            # if "silas" in fetched
             print(fetched)
-            index = [x[1] for x in fetched].index(username)
 
-            # if fetched[index]
-            print(fetched[index])
+            # cur.execute("SELECT * FROM users;")
+            # fetched = cur.fetchall()
+            # # if "silas" in fetched
+            # print(fetched)
+            # index = [x[1] for x in fetched].index(username)
+            #
+            # # if fetched[index]
+            # print(fetched[index])
 
             conn.commit()
             cur.close()
