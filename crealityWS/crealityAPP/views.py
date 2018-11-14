@@ -35,6 +35,7 @@ def createUser(request):
 
 
     form = CreateUserForm()
+    HttpResponseRedirect("/login/")
     return render(request, "createUser.html", {"form": form})
 
 
