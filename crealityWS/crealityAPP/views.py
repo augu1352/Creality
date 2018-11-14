@@ -50,7 +50,10 @@ def loginUser(request):
             fetched = cur.fetchall()
             # if "silas" in fetched
             print(fetched)
-            print([x[1] for x in fetched].index("silas"))
+            index = [x[1] for x in fetched].index(username))
+
+            # if fetched[index]
+            print(fetched[index])
 
             conn.commit()
             cur.close()
