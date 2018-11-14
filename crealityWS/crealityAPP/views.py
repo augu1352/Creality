@@ -50,7 +50,7 @@ def loginUser(request):
             fetched = cur.fetchall()
             # if "silas" in fetched
             print(fetched)
-            index = [x[1] for x in fetched].index(username))
+            index = [x[1] for x in fetched].index(username)
 
             # if fetched[index]
             print(fetched[index])
