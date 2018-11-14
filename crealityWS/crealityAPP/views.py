@@ -22,7 +22,7 @@ def createUser(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
-            password = form.cleaned_data["password"]
+            password = str(form.cleaned_data["password"])
 
             conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
             cur = conn.cursor()
