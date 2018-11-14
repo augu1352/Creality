@@ -27,7 +27,7 @@ def createUser(request):
             conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
             cur = conn.cursor()
 
-            cur.execute(f"INSERT INTO users(user_username, user_email, user_password) VALUES({str(username)}, {str(email)}, {str(password)})")
+            cur.execute("INSERT INTO users(user_username, user_email, user_password) VALUES(%s, %s, %s)", (username, email, password))
 
             conn.commit()
             cur.close()
