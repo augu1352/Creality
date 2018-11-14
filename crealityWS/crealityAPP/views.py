@@ -48,7 +48,9 @@ def loginUser(request):
 
             cur.execute("SELECT * FROM users;")
             fetched = cur.fetchall()
-            print(fetched["silas"])
+            if "silas" in fetched
+            print(fetched)
+            print([x[1] for x in fetched].index("silas"))
 
             conn.commit()
             cur.close()
