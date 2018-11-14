@@ -22,8 +22,16 @@ def createUser(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
 
-            print(username, email)
+            conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="postgres")
+            cur = conn.cursor()
+
+            cur.execute(f"INSERT INTO users(user_username, user_email, user_password) VALUES({username}, {email}, {password})")
+
+            conn.commit()
+            cur.close()
+            conn.close()
 
 
     form = CreateUserForm()
