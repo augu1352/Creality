@@ -43,6 +43,17 @@ def loginUser(request):
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
 
+            conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+            cur = conn.cursor()
+
+            cur.execute("SELECT * FROM users;")
+            fetched = cur.fetchall()
+            print(fetched)
+
+            conn.commit()
+            cur.close()
+            conn.close()
+
     form = LoginUserForm()
     return render(request, "login.html", {"form": form})
 
