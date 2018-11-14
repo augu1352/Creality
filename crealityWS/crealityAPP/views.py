@@ -33,9 +33,9 @@ def createUser(request):
             cur.close()
             conn.close()
 
-            HttpResponseRedirect("/login/")
 
 
+    HttpResponseRedirect("/login/")
     form = CreateUserForm()
     return render(request, "createUser.html", {"form": form})
 
