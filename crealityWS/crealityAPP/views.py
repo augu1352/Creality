@@ -39,6 +39,17 @@ def createUser(request):
     return render(request, "createUser.html", {"form": form})
 
 
+
+def loginUser(request):
+    if request.method == "POST":
+        form = LoginUserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+
+    form = LoginUserForm()
+    return render(request, "login.html", {"form": form})
+
 # def userdb(request):
 #     username = request.POST("username")
 #     email = request.POST("email")
