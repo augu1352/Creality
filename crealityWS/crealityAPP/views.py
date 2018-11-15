@@ -50,7 +50,7 @@ def loginUser(request):
             fetched = cur.fetchall()
             if fetched.__contains__(username):
                 cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
-                fetchedpw = fetchone()
+                fetchedpw = fetchall()
                 print(fetchedpw)
                 print("debug")
             # print(fetched)
