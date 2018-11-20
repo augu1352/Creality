@@ -64,6 +64,7 @@ def loginUser(request):
             index = [x[1] for x in fetched].index(username)
 
             # if fetched[index]
+            print("debug")
             print(fetched[index])
 
             conn.commit()
