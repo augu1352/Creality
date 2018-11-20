@@ -49,6 +49,8 @@ def loginUser(request):
             cur.callproc("fn_checkpassword", (username, password))
             fetched = cur.fetchone()
             print(fetched)
+            if "True" in str(fetched):
+                return HttpResponseRedirect("/creality/")
 
             # cur.execute("SELECT user_username FROM users;")
             # fetched = cur.fetchall()
