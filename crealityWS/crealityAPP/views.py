@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
+from django.contrib import messages
 from .forms import *
 import psycopg2
 
@@ -51,6 +52,8 @@ def loginUser(request):
             print(fetched)
             if "True" in str(fetched):
                 return HttpResponseRedirect("/creality/")
+            elif "False" in str(fetched):
+                messages.info(request, "Wrong Password!")
 
             # cur.execute("SELECT user_username FROM users;")
             # fetched = cur.fetchall()
