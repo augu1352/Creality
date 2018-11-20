@@ -52,10 +52,10 @@ def loginUser(request):
             print(fetched)
             if "True" in str(fetched):
                 return HttpResponseRedirect("/creality/")
-            else:
-                print("messageStart")
-                messages = messages.error(request, "Wrong Password!")
-                print("messageStop")
+            # else:
+            #     print("messageStart")
+            #     messages = messages.error(request, "Wrong Password!")
+            #     print("messageStop")
 
             # cur.execute("SELECT user_username FROM users;")
             # fetched = cur.fetchall()
@@ -93,7 +93,7 @@ def loginUser(request):
             conn.close()
 
     form = LoginUserForm()
-    return render(request, "login.html", {"form": form, "messages": messages})
+    return render(request, "login.html", {"form": form})
 
 
 
