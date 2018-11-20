@@ -12,9 +12,9 @@ def index(request):
 
 
 def createUser(request):
-
     if request.method == "POST":
         form = CreateUserForm(request.POST)
+
         if form.is_valid():
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
@@ -48,6 +48,7 @@ def loginUser(request):
 
             cur.execute("SELECT user_username FROM users;")
             fetched = cur.fetchall()
+            print(fetched)
             if fetched.__contains__(username):
                 cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
                 fetchedpw = fetchall()
