@@ -48,6 +48,7 @@ def loginUser(request):
 
             cur.execute("SELECT user_username FROM users;")
             fetched = cur.fetchall()
+            print("debug")
             print(fetched)
             if fetched.__contains__(username):
                 cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
