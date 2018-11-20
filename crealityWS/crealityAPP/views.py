@@ -53,7 +53,9 @@ def loginUser(request):
             if "True" in str(fetched):
                 return HttpResponseRedirect("/creality/")
             else:
+                print("messageStart")
                 messages.info(request, "Wrong Password!")
+                print("messageStop")
 
             # cur.execute("SELECT user_username FROM users;")
             # fetched = cur.fetchall()
