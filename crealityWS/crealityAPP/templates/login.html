@@ -11,13 +11,14 @@
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    {% if messages %}
+    <p>{{ message }}</p>
+    <!-- {% if messages %}
 <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
-{% endif %}
+{% endif %} -->
     <input type="submit" value="Log In">
   </form>
 </body>
