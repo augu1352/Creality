@@ -46,23 +46,29 @@ def loginUser(request):
             conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
             cur = conn.cursor()
 
-            cur.execute("SELECT user_username FROM users;")
-            fetched = cur.fetchall()
-            print("debug")
-            print(fetched)
-            if fetched.__contains__(username):
-                cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
-                fetchedpw = fetchall()
-                print(fetchedpw)
-                print("debug")
+            # cur.execute("SELECT user_username FROM users;")
+            # fetched = cur.fetchall()
+            # print("debug")
+            # print(fetched)
+            # if fetched.__contains__(username):
+            #     cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
+            #     fetchedpw = fetchall()
+            #     print(fetchedpw)
+            #     print("debug")
             # print(fetched)
 
             cur.execute("SELECT * FROM users;")
             fetched = cur.fetchall()
             # if "silas" in fetched
+            print("debug")
             print(fetched)
             index = [x[1] for x in fetched].index(username)
             user = list(fetched[index])
+
+            if user[3] == password:
+                HttpResponseRedirect("/creality/")
+
+
 
             # if fetched[index]
             print("debug")
@@ -74,6 +80,11 @@ def loginUser(request):
 
     form = LoginUserForm()
     return render(request, "login.html", {"form": form})
+
+
+
+def creality(request):
+    return render(request, "creality.html")
 
 # def userdb(request):
 #     username = request.POST("username")
