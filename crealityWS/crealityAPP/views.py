@@ -62,10 +62,11 @@ def loginUser(request):
             # if "silas" in fetched
             print(fetched)
             index = [x[1] for x in fetched].index(username)
+            user = list(fetched[index])
 
             # if fetched[index]
             print("debug")
-            print(fetched[index])
+            print(user)
 
             conn.commit()
             cur.close()
