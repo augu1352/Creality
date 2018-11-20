@@ -54,6 +54,7 @@ def loginUser(request):
                 return HttpResponseRedirect("/creality/")
             else:
                 message = "Wrong Password!"
+                return render(request, "login.html", {"form": form, "message": message})
                 # print("messageStart")
                 # messages = messages.error(request, "Wrong Password!")
                 # print("messageStop")
@@ -95,7 +96,7 @@ def loginUser(request):
 
     form = LoginUserForm()
     message = ""
-    return render(request, "login.html", {"form": form, "message": message})
+    return render(request, "login.html", {"form": form})
 
 
 
