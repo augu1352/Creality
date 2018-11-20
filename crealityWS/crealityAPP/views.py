@@ -95,7 +95,7 @@ def loginUser(request):
 
     form = LoginUserForm()
     message = ""
-    return render(request, "login.html", {"form": form, "messages": message})
+    return render(request, "login.html", {"form": form, "message": message})
 
 
 
