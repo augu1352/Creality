@@ -67,7 +67,7 @@ def loginUser(request):
 
             if user[3] == password:
                 print("right password")
-                HttpResponseRedirect("/creality/")
+                return HttpResponseRedirect("/creality/")
             else:
                 print("wrong password")
 
