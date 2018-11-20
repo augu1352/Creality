@@ -52,10 +52,8 @@ def loginUser(request):
             print(fetched)
             if "True" in str(fetched):
                 return HttpResponseRedirect("/creality/")
-            elif "False" in str(fetched):
-                message = "Wrong Password!"
             else:
-                message = ""
+                message = "Wrong Password!"
                 # print("messageStart")
                 # messages = messages.error(request, "Wrong Password!")
                 # print("messageStop")
@@ -96,6 +94,7 @@ def loginUser(request):
             conn.close()
 
     form = LoginUserForm()
+    message = ""
     return render(request, "login.html", {"form": form, "messages": message})
 
 
