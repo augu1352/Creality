@@ -66,6 +66,7 @@ def loginUser(request):
             user = list(fetched[index])
 
             if user[3] == password:
+                print("right password")
                 HttpResponseRedirect("/creality/")
             else:
                 print("wrong password")
