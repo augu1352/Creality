@@ -93,7 +93,7 @@ def loginUser(request):
             conn.close()
 
     form = LoginUserForm()
-    return render(request, "login.html", {"form": form, "messages": messages})
+    return render(request, "login.html", {"form": form})
 
 
 
