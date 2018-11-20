@@ -47,7 +47,7 @@ def loginUser(request):
             cur = conn.cursor()
 
             cur.callproc("fn_checkpassword", (username, password))
-            fetched = fetchone()
+            fetched = fetchall()
             print(fetched)
 
             # cur.execute("SELECT user_username FROM users;")
