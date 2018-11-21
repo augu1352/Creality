@@ -107,7 +107,7 @@ def creality(request):
     cur.close()
     conn.close()
     print(request.COOKIES)
-    if "username" in request.COOKIES.get():
+    if "username" in request.COOKIES.get(*):
         cur.callproc()
         cookie_uname = request.COOKIES.get("username")
         print(cookie_uname)
