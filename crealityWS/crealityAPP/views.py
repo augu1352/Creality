@@ -49,8 +49,9 @@ def loginUser(request):
 
             cur.callproc("fn_checkpassword", (username, password))
             fetched = cur.fetchone()
-            print(fetched)
             if "True" in str(fetched):
+                response = render_to_response(request, "creality.html")
+                response.set_cookie("username", username)
                 return HttpResponseRedirect("/creality/")
             else:
                 message = "Wrong Password!"
@@ -100,7 +101,14 @@ def loginUser(request):
 
 
 def creality(request):
+    if "username" in request.COOKIES():
+        cookie_uname = request.COOKIES["username"]
+        print(cookie_uname)
+    elif "username" not in request.COOKIES:
+        print("no 'username' in COOKIES")
     return render(request, "creality.html")
+
+
 
 # def userdb(request):
 #     username = request.POST("username")
