@@ -104,6 +104,9 @@ def loginUser(request):
 def creality(request):
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
+    cur.close()
+    conn.close()
+    print(request.COOKIES)
     if "username" in request.COOKIES:
         cur.callproc()
         cookie_uname = request.COOKIES["username"]
