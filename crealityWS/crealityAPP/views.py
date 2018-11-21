@@ -50,7 +50,8 @@ def loginUser(request):
             cur.callproc("fn_checkpassword", (username, password))
             fetched = cur.fetchone()
             if "True" in str(fetched):
-                response = render_to_response("creality.html", context_dict, context)
+                # context = RequestContext(request)
+                response = render_to_response("creality.html")
                 response.set_cookie("username", username)
                 return HttpResponseRedirect("/creality/")
             else:
