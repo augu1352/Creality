@@ -50,7 +50,7 @@ def loginUser(request):
             cur.callproc("fn_checkpassword", (username, password))
             fetched = cur.fetchone()
             if "True" in str(fetched):
-                response = render_to_response(request, "creality.html")
+                response = render_to_response("creality.html", context_dict, context)
                 response.set_cookie("username", username)
                 return HttpResponseRedirect("/creality/")
             else:
@@ -101,11 +101,16 @@ def loginUser(request):
 
 
 def creality(request):
+    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    cur = conn.cursor()
     if "username" in request.COOKIES():
+        cur.callproc()
         cookie_uname = request.COOKIES["username"]
         print(cookie_uname)
     elif "username" not in request.COOKIES:
         print("no 'username' in COOKIES")
+    else:
+        print("cookies don't work")
     return render(request, "creality.html")
 
 
