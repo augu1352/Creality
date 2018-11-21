@@ -52,7 +52,7 @@ def loginUser(request):
             if "True" in str(fetched):
                 # context = RequestContext(request)
                 response = render_to_response("creality.html")
-                response.set_cookie({"username": username})
+                response.set_cookie("username", username)
                 return HttpResponseRedirect("/creality/")
             else:
                 message = "Wrong Password!"
@@ -107,11 +107,11 @@ def creality(request):
     cur.close()
     conn.close()
     print(request.COOKIES)
-    if "username" in request.COOKIES:
+    if "username" in request.COOKIES.get():
         cur.callproc()
-        cookie_uname = request.COOKIES["username"]
+        cookie_uname = request.COOKIES.get("username)]
         print(cookie_uname)
-    elif "username" not in request.COOKIES:
+    elif "username" not in request.COOKIES.get():
         print("no 'username' in COOKIES")
     else:
         print("cookies don't work")
