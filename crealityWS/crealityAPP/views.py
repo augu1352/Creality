@@ -52,7 +52,7 @@ def loginUser(request):
             if "True" in str(fetched):
                 # context = RequestContext(request)
                 response = render_to_response("creality.html")
-                response.set_cookie("username", username)
+                request.set_cookie("username", username)
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
             else:
