@@ -53,7 +53,7 @@ def loginUser(request):
                 # context = RequestContext(request)
                 # response = HttpResponse()
                 # response.set_cookie("username", username)
-                request.COOKIES["username"] = username
+                creality().request.COOKIES["username"] = username
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
             else:
