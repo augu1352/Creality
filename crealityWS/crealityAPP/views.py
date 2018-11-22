@@ -53,7 +53,7 @@ def loginUser(request):
                 # context = RequestContext(request)
                 # response = HttpResponse()
                 # response.set_cookie("username", username)
-                creality(request).request.COOKIES["username"] = username
+                creality(request).selfRequest.COOKIES["username"] = username
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
             else:
@@ -104,6 +104,7 @@ def loginUser(request):
 
 
 def creality(request):
+    selfRequest = request
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
     cur.close()
