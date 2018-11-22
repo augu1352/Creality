@@ -51,7 +51,7 @@ def loginUser(request):
             fetched = cur.fetchone()
             if "True" in str(fetched):
                 # context = RequestContext(request)
-                response = HttpResponse("hello world")
+                response = HttpResponse()
                 response.set_cookie("username", username)
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
