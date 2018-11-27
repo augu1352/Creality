@@ -74,7 +74,7 @@ def loginUser(request):
                 print("debug")
                 print(request.COOKIES)
                 return (response)
-                if __name__ = "__main__":
+                if __name__ == "__main__":
                     return HttpResponseRedirect("/creality/")
                 # return HttpResponseRedirect("/creality/")
 
