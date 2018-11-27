@@ -69,7 +69,7 @@ def loginUser(request):
                 # response = HttpResponse()
                 response = render(request, "login.html")
                 print(username)
-                response.set_cookie("cr_username", username)
+                response.set_cookie("cr_username", "cookie monster")
                 # request.COOKIES["username"] = username
                 print("debug")
                 print(request.COOKIES)
