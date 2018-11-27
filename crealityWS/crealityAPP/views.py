@@ -68,6 +68,7 @@ def loginUser(request):
                 # request.COOKIES["last_connection"] = datetime.datetime.now()
                 # response = HttpResponse()
                 response = render(request, "login.html")
+                print(username)
                 response.set_cookie("cr_username", username)
                 # request.COOKIES["username"] = username
                 print("debug")
@@ -128,14 +129,14 @@ def creality(request):
     conn.close()
     response.set_cookie("testCookie", "1234")
     print(request.COOKIES)
-    if "username" in request.COOKIES:
-        cur.callproc()
-        cookie_uname = request.COOKIES["username"]
-        print(cookie_uname)
-    elif "username" not in request.COOKIES:
-        print("no 'username' in COOKIES")
-    else:
-        print("cookies don't work")
+    # if "username" in request.COOKIES:
+    #     cur.callproc()
+    #     cookie_uname = request.COOKIES["username"]
+    #     print(cookie_uname)
+    # elif "username" not in request.COOKIES:
+    #     print("no 'username' in COOKIES")
+    # else:
+    #     print("cookies don't work")
     return response
 
 
