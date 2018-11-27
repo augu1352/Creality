@@ -116,7 +116,7 @@ def loginUser(request):
             conn.close()
 
     form = LoginUserForm()
-    return response
+    return render(request, "login.html", {"form": form})
 
 
 
