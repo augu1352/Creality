@@ -46,6 +46,7 @@ def createUser(request):
 
 
 def loginUser(request):
+    response = render(request, "login.html", {"form": form})
     if request.method == "POST":
         form = LoginUserForm(request.POST)
         if form.is_valid():
@@ -66,9 +67,9 @@ def loginUser(request):
                 #
                 # request.COOKIES["session_id"] = session_id
                 # request.COOKIES["last_connection"] = datetime.datetime.now()
-                response = HttpResponse()
-                response.set_cookie("username", value=username)
-                request.COOKIES["username"] = username
+                # response = HttpResponse()
+                response.set_cookie("username", username)
+                # request.COOKIES["username"] = username
                 print("debug")
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
