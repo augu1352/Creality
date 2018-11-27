@@ -46,9 +46,9 @@ def createUser(request):
 
 
 def loginUser(request):
-    response = render(request, "login.html", {"form": form})
     if request.method == "POST":
         form = LoginUserForm(request.POST)
+        response = render(request, "login.html", {"form": form})
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
