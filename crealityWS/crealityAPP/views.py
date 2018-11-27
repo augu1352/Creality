@@ -46,8 +46,8 @@ def createUser(request):
 
 
 def loginUser(request):
-    response = render(request, "login.html")
-    response.set_cookie("cr_username", "cookie monster")
+    response1 = render(request, "login.html")
+    response1.set_cookie("cr_username", "cookie monster")
     print(request.COOKIES)
 
     if request.method == "POST":
@@ -78,7 +78,7 @@ def loginUser(request):
                 print("debug")
                 print(request.COOKIES)
                 # return HttpResponseRedirect("/creality/")
-                return render(request, "login.html", {"form": form})
+                return response1
             else:
                 message = "Wrong Password!"
                 return render(request, "login.html", {"form": form, "message": message})
