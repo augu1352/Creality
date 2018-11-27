@@ -73,14 +73,14 @@ def loginUser(request):
                 # request.COOKIES["username"] = username
                 print("debug")
                 print(request.COOKIES)
-                return (response)
-                if __name__ == "__main__":
-                    return HttpResponseRedirect("/creality/")
+                return response
                 # return HttpResponseRedirect("/creality/")
 
             else:
                 message = "Wrong Password!"
                 return render(request, "login.html", {"form": form, "message": message})
+
+            return HttpResponseRedirect("/creality/")
                 # print("messageStart")
                 # messages = messages.error(request, "Wrong Password!")
                 # print("messageStop")
