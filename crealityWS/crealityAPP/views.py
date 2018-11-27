@@ -78,6 +78,7 @@ def loginUser(request):
                 print("debug")
                 print(request.COOKIES)
                 # return HttpResponseRedirect("/creality/")
+                return render(request, "login.html", {"form": form})
             else:
                 message = "Wrong Password!"
                 return render(request, "login.html", {"form": form, "message": message})
