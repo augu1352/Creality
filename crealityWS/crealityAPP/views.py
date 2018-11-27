@@ -1,7 +1,6 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
-from django.contrib import messages
 from .forms import *
 import psycopg2
 
@@ -10,6 +9,15 @@ import psycopg2
 def index(request):
     return render(request, "index.html")
     # return HttpResponse("HELLO WORLD")
+
+
+def update_session_timestamp(request):
+    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    cur = conn.cursor()
+
+    session_id = request.COOKIE["session_id"]
+
+    cur.callproc("fn_update_session_timestamp", (session_id))
 
 
 def createUser(request):
@@ -53,7 +61,13 @@ def loginUser(request):
                 # context = RequestContext(request)
                 # response = HttpResponse()
                 # response.set_cookie("username", username)
-                creality(request).selfRequest.COOKIES["username"] = username
+
+                # session_id
+                #
+                # request.COOKIES["session_id"] = session_id
+                # request.COOKIES["last_connection"] = datetime.datetime.now()
+                response = HttpResponse()
+                response.set_cookie("username", username)
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
             else:
@@ -104,12 +118,11 @@ def loginUser(request):
 
 
 def creality(request):
-    selfRequest = request
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
     cur.close()
     conn.close()
-    print(request.META.get('HTTP_COOKIE'))
+    print(request.COOKIES)
     if "username" in request.COOKIES:
         cur.callproc()
         cookie_uname = request.COOKIES["username"]
