@@ -68,6 +68,7 @@ def loginUser(request):
                 # request.COOKIES["last_connection"] = datetime.datetime.now()
                 response = HttpResponse()
                 response.set_cookie("username", username)
+                print("debug")
                 print(request.COOKIES)
                 return HttpResponseRedirect("/creality/")
             else:
