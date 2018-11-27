@@ -69,7 +69,7 @@ def loginUser(request):
                 response = HttpResponse()
                 response.set_cookie("username", value=username)
                 print("debug")
-                print(HttpRequest.get_signed_cookie(request, "username"))
+                print(request.get_signed_cookie("username"))
                 return HttpResponseRedirect("/creality/")
             else:
                 message = "Wrong Password!"
