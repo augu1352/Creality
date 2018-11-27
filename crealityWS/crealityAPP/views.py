@@ -116,15 +116,17 @@ def loginUser(request):
             conn.close()
 
     form = LoginUserForm()
-    return render(request, "login.html", {"form": form})
+    return response
 
 
 
 def creality(request):
+    response = render(request, "creality.html")
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
     cur.close()
     conn.close()
+    response.set_cookie("testCookie", "1234")
     print(request.COOKIES)
     if "username" in request.COOKIES:
         cur.callproc()
@@ -134,7 +136,7 @@ def creality(request):
         print("no 'username' in COOKIES")
     else:
         print("cookies don't work")
-    return render(request, "creality.html")
+    return response
 
 
 
