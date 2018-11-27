@@ -67,7 +67,7 @@ def loginUser(request):
                 # request.COOKIES["session_id"] = session_id
                 # request.COOKIES["last_connection"] = datetime.datetime.now()
                 # response = HttpResponse()
-                response = render(request, "login.html", {"form": form})
+                response = render(request, "login.html"))
                 print(username)
                 response.set_cookie("cr_username", username)
                 # request.COOKIES["username"] = username
