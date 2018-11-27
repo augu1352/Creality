@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.core.mail import send_mail
 from .forms import *
 import psycopg2
@@ -69,7 +69,7 @@ def loginUser(request):
                 response = HttpResponse()
                 response.set_cookie("username", username)
                 print("debug")
-                print(request.COOKIES)
+                print(HttpRequest.COOKIES)
                 return HttpResponseRedirect("/creality/")
             else:
                 message = "Wrong Password!"
