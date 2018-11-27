@@ -48,7 +48,6 @@ def createUser(request):
 def loginUser(request):
     if request.method == "POST":
         form = LoginUserForm(request.POST)
-        response = render(request, "login.html", {"form": form})
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
@@ -68,7 +67,8 @@ def loginUser(request):
                 # request.COOKIES["session_id"] = session_id
                 # request.COOKIES["last_connection"] = datetime.datetime.now()
                 # response = HttpResponse()
-                response.set_cookie("username", username)
+                response = render(request, "login.html")
+                response.set_cookie("cr_username", username)
                 # request.COOKIES["username"] = username
                 print("debug")
                 print(request.COOKIES)
