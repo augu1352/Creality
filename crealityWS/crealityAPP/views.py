@@ -20,6 +20,8 @@ def index(request):
             return response
         else:
             return render(request, "index.html")
+    else:
+        return render(request, "index.html")
 
     conn.commit()
     cur.close()
