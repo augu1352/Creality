@@ -12,7 +12,7 @@ def index(request):
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
-    if "session_id" in request.COOKIE:
+    if "session_id" in request.COOKIES:
         cur.callproc("fn_check_sessionid", request.COOKIE["session_id"])
         fetched = cur.fetchone()
         print(fetched)
