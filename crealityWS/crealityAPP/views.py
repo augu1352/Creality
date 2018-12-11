@@ -13,7 +13,7 @@ def index(request):
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
-        cur.callproc("fn_check_sessionid", request.COOKIE["session_id"])
+        cur.callproc("fn_check_sessionid", request.COOKIES["session_id"])
         fetched = cur.fetchone()
         print(fetched)
         if "True" in str(fetched):
@@ -28,7 +28,7 @@ def update_session_timestamp(request):
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
-    session_id = request.COOKIE["session_id"]
+    session_id = request.COOKIES["session_id"]
 
     cur.callproc("fn_update_session_timestamp", (session_id))
 
