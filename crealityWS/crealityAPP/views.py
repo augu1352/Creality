@@ -7,7 +7,20 @@ import psycopg2
 # Create your views here.
 #index page
 def index(request):
-    return render(request, "index.html")
+    response = HttpResponseRedirect("/creality/")
+
+    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    cur = conn.cursor()
+
+    if "session_id" in request.COOKIE:
+        cur.callproc("fn_check_sessionid", request.COOKIE["session_id"])
+        fetched = cur.fetchone()
+        print(fetched)
+        if "True" in str(fetched):
+            return response
+        else:
+            return render(request, "index.html")
+
     # return HttpResponse("HELLO WORLD")
 
 
@@ -69,8 +82,6 @@ def loginUser(request):
                 print(session_id)
 
                 response.set_cookie("session_id", session_id)
-                print("debug")
-                print(request.COOKIES)
                 return response
                 # return HttpResponseRedirect("/creality/")
 
@@ -92,13 +103,12 @@ def loginUser(request):
 
 def creality(request):
     response = render(request, "creality.html")
+
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
-    cur.execute("SELECT *   FROM public.sessions;")
-    fetched = cur.fetchall()
-    print(fetched)
+
     cur.close()
     conn.close()
-    # response.set_cookie("testCookie", "1234")
+
     print(request.COOKIES)
     return response
