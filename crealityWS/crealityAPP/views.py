@@ -21,6 +21,10 @@ def index(request):
         else:
             return render(request, "index.html")
 
+    conn.commit()
+    cur.close()
+    conn.close()
+
     # return HttpResponse("HELLO WORLD")
 
 
@@ -30,7 +34,11 @@ def update_session_timestamp(request):
 
     session_id = request.COOKIES["session_id"]
 
-    cur.callproc("fn_update_session_timestamp", (session_id))
+    cur.callproc("fn_update_session_timestamp", [session_id])
+
+    conn.commit()
+    cur.close()
+    conn.close()
 
 
 def createUser(request):
