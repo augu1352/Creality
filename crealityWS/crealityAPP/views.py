@@ -13,7 +13,7 @@ def index(request):
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
-        cur.callproc("fn_check_sessionid", request.COOKIES["session_id"])
+        cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
         fetched = cur.fetchone()
         print(fetched)
         if "True" in str(fetched):
