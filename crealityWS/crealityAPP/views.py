@@ -76,7 +76,7 @@ def loginUser(request):
                 print(fetched)
 
                 cur.execute("SELECT *   FROM public.sessions;")
-                fetched = cur.fetchone()
+                fetched = cur.fetchall()
                 print(fetched)
                 # response.set_cookie("session_id", session_id)
                 # request.COOKIES["username"] = username
@@ -106,7 +106,7 @@ def creality(request):
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
     cur.execute("SELECT *   FROM public.sessions;")
-    fetched = cur.fetchone()
+    fetched = cur.fetchall()
     print(fetched)
     cur.close()
     conn.close()
