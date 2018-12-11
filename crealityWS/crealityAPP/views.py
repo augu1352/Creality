@@ -118,8 +118,17 @@ def creality(request):
     conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
+    if "session_id" in request.COOKIES:
+        cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
+        fetched = cur.fetchone()
+        if "True" in str(fetched):
+            return response
+        else:
+            return HttpResponseRedirect("/")
+    else:
+        return HttpResponseRedirect("/")
+
     cur.close()
     conn.close()
 
     print(request.COOKIES)
-    return response
