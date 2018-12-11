@@ -73,8 +73,8 @@ def loginUser(request):
                 response = HttpResponseRedirect("/creality/")
                 cur.execute("BEGIN")
                 cur.callproc("fn_createsessionid", [username])
-                cur.execute("COMMIT")
                 fetched = cur.fetchone()
+                cur.execute("COMMIT")
                 print(fetched)
 
                 cur.execute("SELECT *   FROM public.sessions;")
