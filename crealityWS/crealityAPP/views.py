@@ -74,6 +74,10 @@ def loginUser(request):
                 cur.callproc("fn_createsessionid", [username])
                 fetched = cur.fetchone()
                 print(fetched)
+
+                cur.execute("SELECT *   FROM public.sessions;")
+                fetched = cur.fetchone()
+                print(fetched)
                 # response.set_cookie("session_id", session_id)
                 # request.COOKIES["username"] = username
                 print("debug")
