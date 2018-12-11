@@ -71,7 +71,7 @@ def loginUser(request):
                 print(username)
                 # response = render(request, "login.html", {"form": form})
                 response = HttpResponseRedirect("/creality/")
-                cur.callproc("fn_createsessionid", (username))
+                cur.callproc("fn_createsessionid", username)
                 fetched = fetchone()
                 print(fetched)
                 # response.set_cookie("session_id", session_id)
