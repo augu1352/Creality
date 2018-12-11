@@ -48,6 +48,7 @@ def createUser(request):
 def loginUser(request):
     if request.method == "POST":
         form = LoginUserForm(request.POST)
+        response = render(request, "login.html", {"form": form})
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
@@ -67,58 +68,25 @@ def loginUser(request):
                 # request.COOKIES["session_id"] = session_id
                 # request.COOKIES["last_connection"] = datetime.datetime.now()
                 # response = HttpResponse()
-                response = render(request, "login.html", {"form": form})
+                # response = render(request, "login.html", {"form": form})
                 print(username)
                 response.set_cookie("username", username)
                 # request.COOKIES["username"] = username
                 print("debug")
                 print(request.COOKIES)
-                return response
-                # return HttpResponseRedirect("/creality/")
+                # return response
+                return HttpResponseRedirect("/creality/")
 
             else:
                 message = "Wrong Password!"
                 return render(request, "login.html", {"form": form, "message": message})
 
-            return HttpResponseRedirect("/creality/")
-                # print("messageStart")
-                # messages = messages.error(request, "Wrong Password!")
-                # print("messageStop")
-
-            # cur.execute("SELECT user_username FROM users;")
-            # fetched = cur.fetchall()
-            # print("debug")
-            # print(fetched)
-            # if fetched.__contains__(username):
-            #     cur.execute("SELECT user_password FROM user WHERE user_username=\"%s\"", (username))
-            #     fetchedpw = fetchall()
-            #     print(fetchedpw)
-            #     print("debug")
-            # print(fetched)
-
-            # cur.execute("SELECT * FROM users;")
-            # fetched = cur.fetchall()
-            # # if "silas" in fetched
-            # print("debug")
-            # print(fetched)
-            # index = [x[1] for x in fetched].index(username)
-            # user = list(fetched[index])
-            #
-            # if user[3] == password:
-            #     print("right password")
-            #     return HttpResponseRedirect("/creality/")
-            # else:
-            #     print("wrong password")
-            #
-            #
-            #
-            # # if fetched[index]
-            # print("debug")
-            # print(user)
 
             conn.commit()
             cur.close()
             conn.close()
+
+            return HttpResponseRedirect("/creality/")
 
     form = LoginUserForm()
     return render(request, "login.html", {"form": form})
@@ -133,42 +101,4 @@ def creality(request):
     conn.close()
     response.set_cookie("testCookie", "1234")
     print(request.COOKIES)
-    # if "username" in request.COOKIES:
-    #     cur.callproc()
-    #     cookie_uname = request.COOKIES["username"]
-    #     print(cookie_uname)
-    # elif "username" not in request.COOKIES:
-    #     print("no 'username' in COOKIES")
-    # else:
-    #     print("cookies don't work")
     return response
-
-
-
-# def userdb(request):
-#     username = request.POST("username")
-#     email = request.POST("email")
-#     password = request.POST("password")
-#
-#     conn = psycopg2.connect(host="localhost", database="crealityDB", user="postgres", password="postgres")
-#     cur = conn.cursor()
-#     cur.execute("INSERT INTO users VALUES (username, email, password)")
-
-
-
-#form username handler
-
-# def get_newUserInfo(request):
-#     if request.method == "POST":
-#         form = CreatUserForm(request.POST)
-#         if form.is_valid():
-#             # username = form.cleaned_data['username']
-#             # email = form.cleaned_data['email']
-#             # password = form.cleaned_data['password']
-#             # recipients = ["august12.feb2004@gmail.com"]
-#             # send_email("Created User", f"You created user: {username} with email: {email} and password: {password}", email, recipients)
-#             return HttpResponseRedirect("/thanks/")
-#     else:
-#         form = CreatUserForm()
-#
-#     return render(request, 'index.html', {'formHere' : form,})
