@@ -48,7 +48,6 @@ def createUser(request):
 def loginUser(request):
     if request.method == "POST":
         form = LoginUserForm(request.POST)
-        response = render(request, "login.html", {"form": form})
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
@@ -70,12 +69,14 @@ def loginUser(request):
                 # response = HttpResponse()
                 # response = render(request, "login.html", {"form": form})
                 print(username)
+                # response = render(request, "login.html", {"form": form})
+                response = HttpResponseRedirect("/creality/")
                 response.set_cookie("username", username)
                 # request.COOKIES["username"] = username
                 print("debug")
                 print(request.COOKIES)
-                # return response
-                return HttpResponseRedirect("/creality/")
+                return response
+                # return HttpResponseRedirect("/creality/")
 
             else:
                 message = "Wrong Password!"
@@ -99,6 +100,6 @@ def creality(request):
     cur = conn.cursor()
     cur.close()
     conn.close()
-    response.set_cookie("testCookie", "1234")
+    # response.set_cookie("testCookie", "1234")
     print(request.COOKIES)
     return response
