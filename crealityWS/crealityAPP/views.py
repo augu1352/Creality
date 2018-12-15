@@ -129,6 +129,8 @@ def creality(request):
     model = None
     template = "creality.html"
     context = {"model": model}
-    response = render(request, template, context)
 
+    model = "hey"
+
+    response = render(request, template, context)
     return response
