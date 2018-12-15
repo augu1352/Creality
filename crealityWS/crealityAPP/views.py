@@ -126,7 +126,7 @@ def creality(request):
     cur.close()
     conn.close()
 
-    model = None
+    
     template = "creality.html"
     context = {"model": model}
 
