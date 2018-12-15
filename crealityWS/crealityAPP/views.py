@@ -109,7 +109,10 @@ def loginUser(request):
 
 
 def creality(request):
-    response = render(request, "creality.html")
+    model = None
+    template = "creality.html"
+    context = {"model": model}
+    response = render(request, template, context)
 
     conn = psycopg2.connect(
         dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
@@ -119,11 +122,18 @@ def creality(request):
         cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
         fetched = cur.fetchone()
         if "True" in str(fetched):
-            return response
+            pass
         else:
             return HttpResponseRedirect("/")
     else:
         return HttpResponseRedirect("/")
+
+
+
+        
+
+
+
 
     cur.close()
     conn.close()
