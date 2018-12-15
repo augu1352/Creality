@@ -126,11 +126,11 @@ def creality(request):
     cur.close()
     conn.close()
 
-    
+
+    model = "hey"
     template = "creality.html"
     context = {"model": model}
 
-    model = "hey"
 
     response = render(request, template, context)
     return response
