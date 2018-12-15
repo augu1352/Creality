@@ -130,10 +130,7 @@ def creality(request):
 
 
 
-        
-
-
-
-
     cur.close()
     conn.close()
+
+    return response
