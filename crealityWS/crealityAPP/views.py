@@ -133,4 +133,6 @@ def creality(request):
     cur.close()
     conn.close()
 
+    model = "hey"
+
     return response
