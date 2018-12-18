@@ -5,7 +5,6 @@ from .forms import *
 import psycopg2
 
 
-
 def index(request):
     response = HttpResponseRedirect("/creality/")
 
@@ -26,7 +25,6 @@ def index(request):
     conn.commit()
     cur.close()
     conn.close()
-
 
 
 def update_session_timestamp(request):
@@ -84,7 +82,6 @@ def loginUser(request):
             cur.callproc("fn_checkpassword", (username, password))
             fetched = cur.fetchone()
             if "True" in str(fetched):
-
                 response = HttpResponseRedirect("/creality/")
                 cur.execute("BEGIN")
                 cur.callproc("fn_createsessionid", [username])
@@ -126,11 +123,9 @@ def creality(request):
     cur.close()
     conn.close()
 
-
     model = "hey"
     template = "creality.html"
     context = {"model": model}
-
 
     response = render(request, template, context)
     return response
