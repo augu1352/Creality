@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'videostream',
+    'oembed',
+    'tagging.models.Tag',
 ]
 
 MIDDLEWARE = [
