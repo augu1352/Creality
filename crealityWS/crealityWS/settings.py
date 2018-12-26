@@ -51,9 +51,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'crispy_forms',
-    'videostream',
-    'oembed',
-    'tagging.models.Tag',
 ]
 
 MIDDLEWARE = [
