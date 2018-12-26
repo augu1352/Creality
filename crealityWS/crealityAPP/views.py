@@ -126,7 +126,7 @@ def creality(request):
 
     model = "Hello World!"
 
-    if request.method = "POST":
+    if request.method == "POST":
         form = UploadImageForm(request.POST)
         if form.is_valid():
             image = form.cleaned_data["image"]
