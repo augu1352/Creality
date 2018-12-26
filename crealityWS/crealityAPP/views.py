@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.core.mail import send_mail
 from .forms import *
 import psycopg2
+import io
 
 
 def index(request):
@@ -124,8 +125,15 @@ def creality(request):
     conn.close()
 
     model = "Hello World!"
+
+    if request.method = "POST":
+        form = UploadImageForm(request.POST)
+        if form.is_valid():
+            image = form.cleaned_data["image"]
+            print(image)
+
     template = "creality.html"
-    context = {"model": model}
+    context = {"model": model, "form": form}
 
     response = render(request, template, context)
     return response
