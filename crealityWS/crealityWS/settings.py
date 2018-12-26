@@ -92,12 +92,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'postgresqlDB': {
+    'postgresDB': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'crealitydb',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'PASSWORD': '120204Aj',
+        'HOST': '127.0.0.1,
         'PORT': '5432',
     }
 }
