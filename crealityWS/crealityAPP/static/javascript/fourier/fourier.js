@@ -11,7 +11,7 @@ let slider;
 
 function setup() {
   createCanvas(600, 400);
-  slider = createSlider(1, 20, 5);
+  slider = createSlider(1, 100, 5);
 }
 
 function draw() {
