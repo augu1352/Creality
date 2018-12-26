@@ -123,7 +123,7 @@ def creality(request):
     cur.close()
     conn.close()
 
-    model = "hey"
+    model = "Hello World!"
     template = "creality.html"
     context = {"model": model}
 
