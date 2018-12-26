@@ -20,7 +20,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('crealityAPP.urls')),
-    path('videos/', include('videostream.urls')),
 ]
 
 
