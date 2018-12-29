@@ -13,4 +13,4 @@ class LoginUserForm(forms.Form):
 
 
 class UploadImageForm(forms.Form):
-    image = forms.ImageField(label="Upload Image", enctype="multipart/form/data")
+    image = forms.ImageField(label="Upload Image")
