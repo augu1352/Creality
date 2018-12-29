@@ -4,7 +4,6 @@ from django.core.mail import send_mail
 from .forms import *
 import psycopg2
 import io
-import PIL
 
 
 def index(request):
@@ -131,6 +130,8 @@ def creality(request):
         if form.is_valid():
             if request.FILES["image"]:
                 print("true debug")
+                image = request.FILES["image"]
+                print(image)
             else:
                 print("false debug")
     form = UploadImageForm()
