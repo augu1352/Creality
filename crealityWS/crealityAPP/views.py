@@ -128,7 +128,7 @@ def creality(request):
 
     form = UploadImageForm(request.POST)
     if form.is_valid():
-        image = form.cleaned_data["image"]
+        image = request.FILES["image"]
         print(image)
 
     template = "creality.html"
