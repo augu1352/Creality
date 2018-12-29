@@ -130,7 +130,7 @@ def creality(request):
         if form.is_valid():
             image = request.FILES["image"]
             print(image)
-
+    form = UploadImageForm()
     template = "creality.html"
     context = {"model": model, "form": form}
 
