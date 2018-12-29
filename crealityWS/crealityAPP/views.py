@@ -126,12 +126,12 @@ def creality(request):
 
     model = "Hello World!"
     if request.method == "POST":
-        form = UploadImageForm(request.POST, files=request.FILES)
+        form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
             if request.FILES["image"]:
                 print("true debug")
                 image = request.FILES["image"]
-                print(image)
+                print(image.content_type)
             else:
                 print("false debug")
     form = UploadImageForm()
