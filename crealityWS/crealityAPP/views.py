@@ -134,9 +134,12 @@ def creality(request):
                 image = request.FILES["image"]
                 print(image.content_type)
 
-				fp = io.BytesIO()
-				binImage = image.save(fp, image.format)
-				print(binImage)
+				binImage = image.tobytes()
+				print("debug\n" + binImage)
+
+				# fp = io.BytesIO()
+				# binImage = image.save(fp, image.format)
+				# print(binImage)
             else:
                 print("false debug")
     form = UploadImageForm()
