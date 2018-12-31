@@ -122,26 +122,31 @@ def creality(request):
     else:
         return HttpResponseRedirect("/")
 
-    cur.close()
-    conn.close()
 
     model = "Hello World!"
     if request.method == "POST":
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
             if request.FILES["image"]:
-                print("true debug")
+                print("file in memory  debug")
                 image = request.FILES["image"]
                 print(image.content_type)
 
 				binImage = image.tobytes()
-				print("debug\n" + binImage)
+				print("image in binary  debug\n" + binImage)
+
+				cur.callproc("fn_save_bin_image", (binImage))
+
+
 
 				# fp = io.BytesIO()
 				# binImage = image.save(fp, image.format)
 				# print(binImage)
             else:
-                print("false debug")
+                print("file not in memory  debug")
+	cur.close()
+    conn.close()
+
     form = UploadImageForm()
     template = "creality.html"
     context = {"model": model, "form": form}
