@@ -137,7 +137,7 @@ def creality(request):
 
 				cur.callproc("fn_save_bin_image", (binImage))
 
-
+				hej med dig!
 
 				# fp = io.BytesIO()
 				# binImage = image.save(fp, image.format)
