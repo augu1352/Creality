@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from .forms import *
 import psycopg2
 import io
-import PIL
+from PIL import *
 
 
 def index(request):
@@ -157,7 +157,7 @@ def uploadImage(request):
                 imageField = request.FILES["image"]
                 stream = imageField.open()
 
-                image = PIL.Image.open(stream)
+                image = Image.open(stream)
 
                 binImage = image.tobytes()
                 stream.close()
@@ -222,7 +222,7 @@ def viewImage(request):
     print(f"DEBUG | {fetched}")
 
     for i in fetched:
-        image = PIL.Image.open(io.BytesIO(i))
+        image = Image.open(io.BytesIO(i))
         images.append(image)
     print(images)
 
