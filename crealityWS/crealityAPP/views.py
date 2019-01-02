@@ -108,8 +108,7 @@ def loginUser(request):
 
 
 def creality(request):
-    conn = psycopg2.connect(
-        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -138,7 +137,17 @@ def creality(request):
                 stream.close()
                 print("image in binary  debug\n" + str(binImage))
 
-				# cur.callproc("fn_save_bin_image", (binImage))
+                if "session_id" in request.COOKIES:
+                    cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
+                    fetched = cur.fetchone()
+                    if "True" in str(fetched):
+                        session_id = request.COOKIES["session_id"]
+                    else:
+                        return HttpResponseRedirect("/")
+                else:
+                    return HttpResponseRedirect("/")
+
+				cur.callproc("fn_save_bin_image", (binImage, session_id))
 
 
 				# fp = io.BytesIO()
