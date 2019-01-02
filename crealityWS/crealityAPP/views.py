@@ -148,7 +148,9 @@ def creality(request):
                     return HttpResponseRedirect("/")
 
                 print(f"debug {len(str(binImage))} | {session_id}")
+                cur.exexcute("BEGIN")
                 cur.callproc("fn_save_bin_image", (binImage, session_id))
+                cur.execute("COMMIT")
 
 
 				# fp = io.BytesIO()
