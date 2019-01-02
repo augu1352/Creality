@@ -122,7 +122,33 @@ def creality(request):
         return HttpResponseRedirect("/")
 
 
-    model = "Hello World!"
+
+
+
+    template = "creality.html"
+    context = {}
+
+    response = render(request, template, context)
+    return response
+
+
+
+def uploadImage(request):
+    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    cur = conn.cursor()
+
+    if "session_id" in request.COOKIES:
+        cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
+        fetched = cur.fetchone()
+        if "True" in str(fetched):
+            pass
+        else:
+            return HttpResponseRedirect("/")
+    else:
+        return HttpResponseRedirect("/")
+
+
+    model = "Upload Images"
     if request.method == "POST":
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -163,8 +189,33 @@ def creality(request):
     conn.close()
 
     form = UploadImageForm()
-    template = "creality.html"
+    template = "uploadImage.html"
     context = {"model": model, "form": form}
+
+    response = render(request, template, context)
+    return response
+
+
+def viewImage(request):
+    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    cur = conn.cursor()
+
+    if "session_id" in request.COOKIES:
+        cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
+        fetched = cur.fetchone()
+        if "True" in str(fetched):
+            pass
+        else:
+            return HttpResponseRedirect("/")
+    else:
+        return HttpResponseRedirect("/")
+
+
+    cur.close()
+    conn.close()
+
+    template = "viewImage.html"
+    context = {}
 
     response = render(request, template, context)
     return response
