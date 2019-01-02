@@ -129,8 +129,12 @@ def creality(request):
         if form.is_valid():
             if request.FILES["image"]:
                 print("file in memory  debug")
-                image = request.FILES["image"]
-                print(image.content_type)
+                imageField = request.FILES["image"]
+                stream = imageField.open()
+
+                image = PIL.Image.open(stream)
+                stream.close()
+
                 binImage = image.tobytes()
                 print("image in binary  debug\n" + binImage)
 
