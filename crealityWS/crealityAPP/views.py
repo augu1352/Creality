@@ -217,7 +217,7 @@ def viewImage(request):
 
     images = []
 
-    cur.callproc("fn_get_bin_images", (session_id))
+    cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
     print(f"DEBUG | {fetched}")
 
