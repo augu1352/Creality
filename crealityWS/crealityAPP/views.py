@@ -142,7 +142,8 @@ def creality(request):
 				# print(binImage)
             else:
                 print("file not in memory  debug")
-	cur.close()
+
+    cur.close()
     conn.close()
 
     form = UploadImageForm()
