@@ -204,16 +204,20 @@ def viewImage(request):
         cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
         fetched = cur.fetchone()
         if "True" in str(fetched):
-            pass
+            session_id = request.COOKIES["session_id"]
         else:
             return HttpResponseRedirect("/")
     else:
         return HttpResponseRedirect("/")
 
 
-    cur.execute("SELECT * FROM public.images")
-    fetched = cur.fetchall()
-    print(fetched)
+    # cur.execute("SELECT * FROM public.images")
+    # fetched = cur.fetchall()
+    # print(fetched)
+
+    images = []
+
+    cur.callproc("fn_get_bin_image", (session_id))
 
 
     cur.close()
