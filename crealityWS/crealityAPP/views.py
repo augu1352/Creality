@@ -131,11 +131,10 @@ def creality(request):
                 print("file in memory  debug")
                 image = request.FILES["image"]
                 print(image.content_type)
-
-				binImage = image.tobytes()
+                binImage = image.tobytes()
 				print("image in binary  debug\n" + binImage)
 
-				cur.callproc("fn_save_bin_image", (binImage))
+				# cur.callproc("fn_save_bin_image", (binImage))
 
 
 				# fp = io.BytesIO()
