@@ -211,6 +211,11 @@ def viewImage(request):
         return HttpResponseRedirect("/")
 
 
+    cur.execute("SELECT * FROM public.images")
+    fetched = cur.fetchall()
+    print(fetched)
+
+
     cur.close()
     conn.close()
 
