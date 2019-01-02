@@ -133,9 +133,9 @@ def creality(request):
                 stream = imageField.open()
 
                 image = PIL.Image.open(stream)
-                stream.close()
 
                 binImage = image.tobytes()
+                stream.close()
                 print("image in binary  debug\n" + binImage)
 
 				# cur.callproc("fn_save_bin_image", (binImage))
