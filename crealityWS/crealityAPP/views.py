@@ -135,7 +135,7 @@ def creality(request):
 
                 binImage = image.tobytes()
                 stream.close()
-                print("image in binary  debug\n" + str(binImage))
+                # print("image in binary  debug\n" + str(binImage))
 
                 if "session_id" in request.COOKIES:
                     cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
