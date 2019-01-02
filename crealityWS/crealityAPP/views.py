@@ -136,7 +136,7 @@ def creality(request):
 
                 binImage = image.tobytes()
                 stream.close()
-                print("image in binary  debug\n" + binImage)
+                print("image in binary  debug\n" + str(binImage))
 
 				# cur.callproc("fn_save_bin_image", (binImage))
 
