@@ -222,7 +222,7 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        image = Image.open(io.BytesIO(hex(i[0])))
+        image = Image.open(io.BytesIO(hex(int(i[0], 16))))
         images.append(image)
     print(images)
 
