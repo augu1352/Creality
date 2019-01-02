@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from .forms import *
 import psycopg2
 import io
-from PIL import *
+from PIL import Image
 
 
 def index(request):
