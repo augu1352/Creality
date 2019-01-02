@@ -147,6 +147,7 @@ def creality(request):
                 else:
                     return HttpResponseRedirect("/")
 
+                print(f"debug {len(str(binImage))} | {session_id}")
                 cur.callproc("fn_save_bin_image", (binImage, session_id))
 
 
