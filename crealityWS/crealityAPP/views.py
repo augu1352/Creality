@@ -217,7 +217,14 @@ def viewImage(request):
 
     images = []
 
-    cur.callproc("fn_get_bin_image", (session_id))
+    cur.callproc("fn_get_bin_images", (session_id))
+    fetched = list(cur.fetchall())
+    print(f"DEBUG | {fetched}")
+
+    for i in fetched:
+        image = PIL.Image.open(io.BytesIO(i))
+        images.append(image)
+    print(images)
 
 
     cur.close()
