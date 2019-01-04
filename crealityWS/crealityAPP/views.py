@@ -156,6 +156,7 @@ def uploadImage(request):
                 print("file in memory  debug")
                 imageField = request.FILES["image"]
                 stream = imageField.open()
+                print(imageField.read())
 
 
                 image = Image.open(stream)
