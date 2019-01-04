@@ -223,7 +223,7 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        image = Image.frombytes(i[])
+        image = Image.frombytes(i[0])
         images.append(image)
     print(images)
 
