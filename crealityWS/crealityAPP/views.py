@@ -157,9 +157,10 @@ def uploadImage(request):
                 imageField = request.FILES["image"]
                 stream = imageField.open()
 
+
                 image = Image.open(stream)
 
-                binImage = image.tobytes("hex")
+                binImage = image.tobytes()
                 stream.close()
                 # print("image in binary  debug\n" + str(binImage))
 
@@ -174,9 +175,9 @@ def uploadImage(request):
                     return HttpResponseRedirect("/")
 
                 print(f"debug {len(str(binImage))} | {session_id}")
-                cur.execute("BEGIN")
-                cur.callproc("fn_save_bin_image", (binImage, session_id))
-                cur.execute("COMMIT")
+                # cur.execute("BEGIN")
+                # cur.callproc("fn_save_bin_image", (binImage, session_id, binImage.mode, binImage.size))
+                # cur.execute("COMMIT")
 
 
 				# fp = io.BytesIO()
@@ -222,7 +223,7 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        image = Image.open(io.BytesIO(bin(int(i[0], 16))))
+        image = Image.frombytes(i[])
         images.append(image)
     print(images)
 
