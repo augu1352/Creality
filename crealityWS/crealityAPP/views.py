@@ -159,7 +159,7 @@ def uploadImage(request):
 
                 image = Image.open(stream)
 
-                binImage = image.tobytes()
+                binImage = image.tobytes("hex")
                 stream.close()
                 # print("image in binary  debug\n" + str(binImage))
 
