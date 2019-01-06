@@ -157,7 +157,7 @@ def uploadImage(request):
                 imageField = request.FILES["image"]
                 stream = imageField.open()
                 # print(imageField.read())
-            
+
 
 
                 image = Image.open(stream)
