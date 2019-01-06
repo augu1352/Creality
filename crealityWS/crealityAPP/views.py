@@ -156,14 +156,15 @@ def uploadImage(request):
                 print("file in memory  debug")
                 imageField = request.FILES["image"]
                 stream = imageField.open()
-                print(imageField.read())
+                # print(imageField.read())
+            
 
 
                 image = Image.open(stream)
 
                 binImage = image.tobytes()
                 stream.close()
-                # print("image in binary  debug\n" + str(binImage))
+                print("image in binary  debug\n" + len(binImage))
 
                 if "session_id" in request.COOKIES:
                     cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
@@ -176,9 +177,9 @@ def uploadImage(request):
                     return HttpResponseRedirect("/")
 
                 print(f"debug {len(str(binImage))} | {session_id}")
-                # cur.execute("BEGIN")
-                # cur.callproc("fn_save_bin_image", (binImage, session_id, binImage.mode, binImage.size))
-                # cur.execute("COMMIT")
+                cur.execute("BEGIN")
+                cur.callproc("fn_save_bin_image", (binImage, session_id, binImage.mode, binImage.size))
+                cur.execute("COMMIT")
 
 
 				# fp = io.BytesIO()
