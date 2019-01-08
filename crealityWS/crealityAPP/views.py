@@ -211,7 +211,7 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        imgSize = tuple(re.split("x", i[2])
+        imgSize = tuple(re.split("x", i[2]))
         for n in imgSize:
             n = int(n)
         print(imgSize)
