@@ -5,6 +5,7 @@ from .forms import *
 import psycopg2
 import io
 from PIL import Image
+import re
 
 
 def index(request):
@@ -210,7 +211,7 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        image = Image.frombytes(i[0])
+        image = Image.frombytes(i[1], tuple(re.split("x", i[2])), i[0])
         images.append(image)
     print(images)
 
