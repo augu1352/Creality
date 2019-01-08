@@ -164,7 +164,7 @@ def uploadImage(request):
 
                 binImage = image.tobytes()
                 stream.close()
-                print("image in binary  debug\n" + len(binImage))
+                print("image in binary  debug\n" + len(str(binImage)))
 
                 if "session_id" in request.COOKIES:
                     cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
@@ -222,7 +222,7 @@ def viewImage(request):
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
-    # print(f"DEBUG | {fetched[0][0]}")
+    print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
         image = Image.frombytes(i[0])
