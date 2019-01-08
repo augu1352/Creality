@@ -168,7 +168,6 @@ def uploadImage(request):
                 else:
                     return HttpResponseRedirect("/")
 
-                print(binImage)
                 cur.execute("BEGIN")
                 cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}"))
                 cur.execute("COMMIT")
@@ -208,7 +207,7 @@ def viewImage(request):
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
-    print(f"DEBUG | {fetched}")
+    print(f"DEBUG | {fetched[0][0]}")
 
     # for i in fetched:
     #     image = Image.frombytes(i[0])
