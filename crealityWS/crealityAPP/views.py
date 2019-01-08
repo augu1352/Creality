@@ -149,16 +149,13 @@ def uploadImage(request):
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
             if request.FILES["image"]:
-                print("file in memory  debug")
                 imageField = request.FILES["image"]
                 stream = imageField.open()
-                # print(imageField.read())
 
                 image = Image.open(stream)
 
                 binImage = image.tobytes()
                 stream.close()
-                print(f"image in binary  debug\n {len(str(binImage))}")
 
                 if "session_id" in request.COOKIES:
                     cur.callproc("fn_check_sessionid", [
@@ -171,15 +168,9 @@ def uploadImage(request):
                 else:
                     return HttpResponseRedirect("/")
 
-                print(f"debug {len(str(binImage))} | {session_id}")
-                print(image.mode, image.size)
                 cur.execute("BEGIN")
                 cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}"))
                 cur.execute("COMMIT")
-
-                # fp = io.BytesIO()
-                # binImage = image.save(fp, image.format)
-                # print(binImage)
             else:
                 print("file not in memory  debug")
 
@@ -209,20 +200,17 @@ def viewImage(request):
     else:
         return HttpResponseRedirect("/")
 
-    # cur.execute("SELECT * FROM public.images")
-    # fetched = cur.fetchall()
-    # print(fetched)
 
     images = []
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
-    print(f"DEBUG | {fetched[0][0]}")
+    print(f"DEBUG | {fetched}")
 
-    for i in fetched:
-        image = Image.frombytes(i[0])
-        images.append(image)
-    print(images)
+    # for i in fetched:
+    #     image = Image.frombytes(i[0])
+    #     images.append(image)
+    # print(images)
 
     cur.close()
     conn.close()
