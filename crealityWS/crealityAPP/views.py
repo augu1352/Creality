@@ -211,7 +211,11 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        image = Image.frombytes(i[1], tuple(for i in re.split("x", i[2]): i = int(i)), i[0])
+        imgSize = tuple(re.split("x", i[2])
+        for n in imgSize:
+            n = int(n)
+        print(imgSize)
+        image = Image.frombytes(i[1], imgSize, i[0])
         images.append(image)
     print(images)
 
