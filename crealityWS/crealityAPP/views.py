@@ -108,7 +108,8 @@ def loginUser(request):
 
 
 def creality(request):
-    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    conn = psycopg2.connect(
+        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -120,10 +121,6 @@ def creality(request):
             return HttpResponseRedirect("/")
     else:
         return HttpResponseRedirect("/")
-
-
-
-
 
     template = "creality.html"
     context = {}
@@ -132,9 +129,9 @@ def creality(request):
     return response
 
 
-
 def uploadImage(request):
-    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    conn = psycopg2.connect(
+        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -146,7 +143,6 @@ def uploadImage(request):
             return HttpResponseRedirect("/")
     else:
         return HttpResponseRedirect("/")
-
 
     model = "Upload Images"
     if request.method == "POST":
@@ -158,8 +154,6 @@ def uploadImage(request):
                 stream = imageField.open()
                 # print(imageField.read())
 
-
-
                 image = Image.open(stream)
 
                 binImage = image.tobytes()
@@ -167,7 +161,8 @@ def uploadImage(request):
                 print(f"image in binary  debug\n {len(str(binImage))}")
 
                 if "session_id" in request.COOKIES:
-                    cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
+                    cur.callproc("fn_check_sessionid", [
+                                 request.COOKIES["session_id"]])
                     fetched = cur.fetchone()
                     if "True" in str(fetched):
                         session_id = request.COOKIES["session_id"]
@@ -181,10 +176,9 @@ def uploadImage(request):
                 cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, image.size))
                 cur.execute("COMMIT")
 
-
-				# fp = io.BytesIO()
-				# binImage = image.save(fp, image.format)
-				# print(binImage)
+                # fp = io.BytesIO()
+                # binImage = image.save(fp, image.format)
+                # print(binImage)
             else:
                 print("file not in memory  debug")
 
@@ -200,7 +194,8 @@ def uploadImage(request):
 
 
 def viewImage(request):
-    conn = psycopg2.connect(dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+    conn = psycopg2.connect(
+        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -212,7 +207,6 @@ def viewImage(request):
             return HttpResponseRedirect("/")
     else:
         return HttpResponseRedirect("/")
-
 
     # cur.execute("SELECT * FROM public.images")
     # fetched = cur.fetchall()
@@ -228,7 +222,6 @@ def viewImage(request):
         image = Image.frombytes(i[0])
         images.append(image)
     print(images)
-
 
     cur.close()
     conn.close()

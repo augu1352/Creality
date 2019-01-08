@@ -140,3 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# DB_FILES = {"db_table": "images", "fname_column": "img_fname", "blob_column": "binary_data", }
+#
+# DATABASE_ODBC_DRIVER = "PostgreSQL Unicode"
+# DATABASE_NAME = "crealityDB"
+# DATABASE_USER ="postgres"
+# DATABASE_PASSWORD = "120204Aj"
+# DATABASE_HOST = "localhost"
