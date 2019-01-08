@@ -173,8 +173,6 @@ def uploadImage(request):
                 cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
                 cur.execute("COMMIT")
 
-                print(image.size)
-
                 # cur.execute("SELECT binary_data FROM public.images;")
             else:
                 print("file not in memory  debug")
@@ -213,7 +211,7 @@ def viewImage(request):
     # print(f"DEBUG | {fetched[0][0]}")
 
     for i in fetched:
-        image = Image.frombytes(i[1], tuple(re.split("x", i[2])), i[0])
+        image = Image.frombytes(i[1], tuple(for i in re.split("x", i[2]): i = int(i)), i[0])
         images.append(image)
     print(images)
 
