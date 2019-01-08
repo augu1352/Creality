@@ -164,7 +164,7 @@ def uploadImage(request):
 
                 binImage = image.tobytes()
                 stream.close()
-                print("image in binary  debug\n" + len(str(binImage)))
+                print(f"image in binary  debug\n {len(str(binImage))}")
 
                 if "session_id" in request.COOKIES:
                     cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
