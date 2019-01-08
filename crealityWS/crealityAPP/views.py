@@ -173,7 +173,7 @@ def uploadImage(request):
                 cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}"))
                 cur.execute("COMMIT")
 
-                cur.execute("SELECT binary_data FROM public.images;")
+                # cur.execute("SELECT binary_data FROM public.images;")
             else:
                 print("file not in memory  debug")
 
