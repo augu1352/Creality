@@ -178,7 +178,7 @@ def uploadImage(request):
 
                 print(f"debug {len(str(binImage))} | {session_id}")
                 cur.execute("BEGIN")
-                cur.callproc("fn_save_bin_image", (binImage, session_id, Image.mode, Image.size))
+                cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, image.size))
                 cur.execute("COMMIT")
 
 
