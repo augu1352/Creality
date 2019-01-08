@@ -169,7 +169,7 @@ def uploadImage(request):
                     return HttpResponseRedirect("/")
 
                 cur.execute("BEGIN")
-                cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}"))
+                cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.content_type))
                 cur.execute("COMMIT")
 
                 # cur.execute("SELECT binary_data FROM public.images;")
@@ -207,18 +207,18 @@ def viewImage(request):
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
-    print(f"DEBUG | {fetched[0][0]}")
+    # print(f"DEBUG | {fetched[0][0]}")
 
-    # for i in fetched:
-    #     image = Image.frombytes(i[0])
-    #     images.append(image)
-    # print(images)
+    for i in fetched:
+        image = Image.frombytes(i[0])
+        images.append(image)
+    print(images)
 
     cur.close()
     conn.close()
 
     template = "viewImage.html"
-    context = {}
+    context = {"image": image64}
 
     response = render(request, template, context)
     return response
