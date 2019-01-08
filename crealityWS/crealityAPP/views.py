@@ -213,7 +213,7 @@ def viewImage(request):
     for i in fetched:
         imgSize = re.split("x", i[2])
         for n in imgSize:
-            imgSize[n] = int(n)
+            imgSize[imgSize.index(n)] = int(n)
         imgSize = tuple(imgSize)
         print(imgSize)
         image = Image.frombytes(i[1], imgSize, i[0])
