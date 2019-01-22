@@ -216,7 +216,7 @@ def viewImage(request):
             imgSize[imgSize.index(n)] = int(n)
         imgSize = tuple(imgSize)
         print(imgSize)
-        image = Image.frombytes(i[1], imgSize, BitArray(i[0], "hex", i[1])
+        image = Image.frombytes(i[1], imgSize, BitArray(i[0], "hex", i[1]))
         images.append(image)
     print(images)
 
