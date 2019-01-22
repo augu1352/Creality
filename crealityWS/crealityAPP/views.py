@@ -172,8 +172,6 @@ def uploadImage(request):
                 cur.execute("COMMIT")
                 stream.close()
 
-                cur.execute("SELECT * FROM public.images;")
-                print(cur.fetchall())
 
                 # cur.execute("SELECT binary_data FROM public.images;")
             else:
@@ -210,7 +208,7 @@ def viewImage(request):
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
-    # print(f"DEBUG | {fetched[0][0]}")
+    print(f"DEBUG | {fetched}")
 
     for i in fetched:
         imgSize = re.split("x", i[2])
