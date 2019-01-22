@@ -219,14 +219,14 @@ def viewImage(request):
         # print(i[0])
         print(base64.b64decode(i[0]))
         image = Image.frombytes(i[1], imgSize, base64.b64decode(i[0]))
-        images.append(image)
+        images.append((image, i[3]))
     print(images)
 
     cur.close()
     conn.close()
 
     template = "viewImage.html"
-    context = {"image": image64}
+    context = {"image": image, "image_type": }
 
     response = render(request, template, context)
     return response
