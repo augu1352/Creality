@@ -156,8 +156,7 @@ def uploadImage(request):
                 image = Image.open(stream)
 
                 if "session_id" in request.COOKIES:
-                    cur.callproc("fn_check_sessionid", [
-                                 request.COOKIES["session_id"]])
+                    cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
                     fetched = cur.fetchone()
                     if "True" in str(fetched):
                         session_id = request.COOKIES["session_id"]
@@ -166,6 +165,7 @@ def uploadImage(request):
                 else:
                     return HttpResponseRedirect("/")
 
+                print(psycopg2.Binary(image.tobytes())
                 cur.execute("BEGIN")
                 cur.callproc("fn_save_bin_image", (psycopg2.Binary(image.tobytes()), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
                 cur.execute("COMMIT")
