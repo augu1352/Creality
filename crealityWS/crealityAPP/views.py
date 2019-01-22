@@ -155,7 +155,6 @@ def uploadImage(request):
 
                 image = Image.open(stream)
 
-                binImage = image.tobytes()
                 stream.close()
 
                 if "session_id" in request.COOKIES:
@@ -170,7 +169,7 @@ def uploadImage(request):
                     return HttpResponseRedirect("/")
 
                 cur.execute("BEGIN")
-                cur.callproc("fn_save_bin_image", (binImage, session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
+                cur.callproc("fn_save_bin_image", (psycopg2.Binary(image), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
                 cur.execute("COMMIT")
 
                 # cur.execute("SELECT binary_data FROM public.images;")
