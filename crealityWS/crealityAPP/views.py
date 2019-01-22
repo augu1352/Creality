@@ -219,7 +219,7 @@ def viewImage(request):
         # print(i[0])
         # print(base64.b64decode(i[0]))
         image = base64.b64decode(i[0])
-        images.append((image, i[3]))
+        images.append([image, i[3]])
     # print(images)
 
     cur.close()
