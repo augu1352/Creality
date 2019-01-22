@@ -6,6 +6,7 @@ import psycopg2
 import io
 from PIL import Image
 import re
+import base64
 
 
 def index(request):
@@ -153,7 +154,9 @@ def uploadImage(request):
                 imageField = request.FILES["image"]
                 stream = imageField.open()
 
-                image = Image.open(stream)
+                image = base64.b64encode(Image.open(stream))
+
+                stream.close()
 
                 if "session_id" in request.COOKIES:
                     cur.callproc("fn_check_sessionid", [request.COOKIES["session_id"]])
@@ -165,11 +168,10 @@ def uploadImage(request):
                 else:
                     return HttpResponseRedirect("/")
 
-                print(psycopg2.Binary(image.tobytes()))
+                print(image)
                 cur.execute("BEGIN")
-                cur.callproc("fn_save_bin_image", (psycopg2.Binary(image.tobytes()), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
+                cur.callproc("fn_save_bin_image", (image), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
                 cur.execute("COMMIT")
-                stream.close()
 
                 # cur.execute("SELECT binary_data FROM public.images;")
             else:
