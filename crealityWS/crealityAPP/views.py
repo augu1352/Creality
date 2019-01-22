@@ -226,7 +226,7 @@ def viewImage(request):
     conn.close()
 
     template = "viewImage.html"
-    context = {"image": image, "image_type": }
+    context = {}
 
     response = render(request, template, context)
     return response
