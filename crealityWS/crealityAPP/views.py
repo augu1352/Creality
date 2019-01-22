@@ -208,9 +208,9 @@ def viewImage(request):
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
-    print(f"DEBUG | {fetched[::-1]}")
+    # print(f"DEBUG | {fetched[]}")
 
-    for i in fetched:
+    for i in list(fetched[0]):
         imgSize = re.split("x", i[2])
         for n in imgSize:
             imgSize[imgSize.index(n)] = int(n)
