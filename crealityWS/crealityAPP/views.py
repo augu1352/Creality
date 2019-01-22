@@ -210,7 +210,7 @@ def viewImage(request):
     fetched = list(cur.fetchall())
     # print(f"DEBUG | {fetched[]}")
 
-    for i in list(fetched[0]):
+    for i in fetched[0]:
         imgSize = re.split("x", i[2])
         for n in imgSize:
             imgSize[imgSize.index(n)] = int(n)
