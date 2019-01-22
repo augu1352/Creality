@@ -170,7 +170,7 @@ def uploadImage(request):
 
                 print(image)
                 cur.execute("BEGIN")
-                cur.callproc("fn_save_bin_image", (image), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
+                cur.callproc("fn_save_bin_image", (image), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format)
                 cur.execute("COMMIT")
 
                 # cur.execute("SELECT binary_data FROM public.images;")
