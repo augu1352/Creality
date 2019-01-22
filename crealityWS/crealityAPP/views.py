@@ -172,6 +172,9 @@ def uploadImage(request):
                 cur.execute("COMMIT")
                 stream.close()
 
+                cur.execute("SELECT * FROM public.images;")
+                print(cur.fetchall())
+
                 # cur.execute("SELECT binary_data FROM public.images;")
             else:
                 print("file not in memory  debug")
