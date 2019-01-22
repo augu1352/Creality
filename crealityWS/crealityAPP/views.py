@@ -154,7 +154,7 @@ def uploadImage(request):
                 imageField = request.FILES["image"]
                 stream = imageField.open()
 
-                image = base64.b64encode(Image.open(stream))
+                image = base64.b64encode(Image.open(stream).tobytes())
 
                 stream.close()
 
