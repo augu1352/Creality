@@ -165,7 +165,7 @@ def uploadImage(request):
                 else:
                     return HttpResponseRedirect("/")
 
-                print(psycopg2.Binary(image.tobytes())
+                print(psycopg2.Binary(image.tobytes()))
                 cur.execute("BEGIN")
                 cur.callproc("fn_save_bin_image", (psycopg2.Binary(image.tobytes()), session_id, image.mode, f"{image.size[0]}x{image.size[1]}", image.format))
                 cur.execute("COMMIT")
