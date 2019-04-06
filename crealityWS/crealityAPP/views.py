@@ -205,6 +205,7 @@ def viewImage(request):
 
 
     images = []
+    lst = [item[0] for i in images]
 
     cur.callproc("fn_get_bin_images", [session_id])
     fetched = list(cur.fetchall())
@@ -226,7 +227,7 @@ def viewImage(request):
     conn.close()
 
     template = "viewImage.html"
-    context = {"image": images[0][0], "image_type": images[0][1]}
+    context = {"image": lst, "image_type": lst[1]}
 
     response = render(request, template, context)
     return response
