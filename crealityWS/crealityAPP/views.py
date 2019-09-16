@@ -13,7 +13,7 @@ def index(request):
     response = HttpResponseRedirect("/creality/")
 
     conn = psycopg2.connect(
-        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+        dbname="crealitydb", user="postgres", password="postgres", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -33,7 +33,7 @@ def index(request):
 
 def update_session_timestamp(request):
     conn = psycopg2.connect(
-        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+        dbname="crealitydb", user="postgres", password="postgres", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -56,7 +56,7 @@ def createUser(request):
             password = form.cleaned_data["password"]
 
             conn = psycopg2.connect(
-                dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+                dbname="crealitydb", user="postgres", password="postgres", host="localhost")
             cur = conn.cursor()
 
             cur.execute("INSERT INTO users(user_username, user_email, user_password) VALUES(%s, %s, %s)",
@@ -80,7 +80,7 @@ def loginUser(request):
             password = form.cleaned_data["password"]
 
             conn = psycopg2.connect(
-                dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+                dbname="crealitydb", user="postgres", password="postgres", host="localhost")
             cur = conn.cursor()
 
             cur.callproc("fn_checkpassword", (username, password))
@@ -111,7 +111,7 @@ def loginUser(request):
 
 def creality(request):
     conn = psycopg2.connect(
-        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+        dbname="crealitydb", user="postgres", password="postgres", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -137,7 +137,7 @@ def creality(request):
 
 def uploadImage(request):
     conn = psycopg2.connect(
-        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+        dbname="crealitydb", user="postgres", password="postgres", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
@@ -194,7 +194,7 @@ def uploadImage(request):
 
 def viewImage(request):
     conn = psycopg2.connect(
-        dbname="crealitydb", user="postgres", password="120204Aj", host="localhost")
+        dbname="crealitydb", user="postgres", password="postgres", host="localhost")
     cur = conn.cursor()
 
     if "session_id" in request.COOKIES:
