@@ -124,6 +124,10 @@ def creality(request):
     else:
         return HttpResponseRedirect("/")
 
+    conn.commit()
+    cur.close()
+    conn.close()
+
     template = "creality.html"
     context = {}
 
