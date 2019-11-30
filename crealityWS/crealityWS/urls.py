@@ -26,21 +26,6 @@ urlpatterns = [
 
 
 
-# from django.views.generic.simple import direct_to_template
-#
-#
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-# ]
-# urlpatterns += patterns("",(r"^$", direct_to_template, {"template": "home/index.html"}))
-
-
-#Intro URL
-
-
-
-
-
 
 # wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
